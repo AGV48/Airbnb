@@ -6,6 +6,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+
 a {
   color: inherit;
   text-decoration: none;
@@ -20,7 +21,137 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    color: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
   }
+}
+
+
+.container{
+  display: flex;
+  gap: 60px;
+}
+
+.ul2{
+  display: grid;
+  grid-template-columns: 1030px ;
+  grid-template-rows: 50px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 10px;
+  cursor: pointer;
+}
+.logo:hover{
+  color: lightblue;
+}
+
+/* From Uiverse.io by OnlyCodeChannel */ 
+.searchBox {
+  display: flex;
+  max-width: 500px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-radius: 50px;
+  position: relative;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+}
+.searchButton {
+  color: white;
+  position: absolute;
+  right: 8px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--gradient-2, linear-gradient(90deg, #f3cfcf 0%, #fd0000 100%));
+  border: 0;
+  display: inline-block;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  cursor: pointer;
+}
+.searchInput {
+  color: black;
+  border: none;
+  background: none;
+  width: 400px;
+  outline: none;
+  font-size: 15px;
+  padding: 24px 46px 24px 26px;
+}
+.listings {
+  padding: 20px;
+  text-align: center;
+}
+.listing-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.listing-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  width: 300px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.listing-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.listing-card h3 {
+  margin: 10px;
+  font-size: 20px;
+}
+.listing-card p {
+  margin: 10px;
+  color: #555;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #ff5a5f;
+  color: white;
+  margin-bottom: 20px;
+}
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+header nav ul li {
+  margin-left: 20px;
+}
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+/*hover effect*/
+button:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 10px 20px;
+  transform: translateY(-3px);
+}
+/*button pressing effect*/
+button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
 }

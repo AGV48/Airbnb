@@ -1,7 +1,4 @@
-import Link from "next/link";
-import Image from 'next/image'
-
-export default function Hola() {
+export default function Home() {
   return (
     <div>
       <header>
@@ -12,8 +9,24 @@ export default function Hola() {
           <a href="#">Experiencias</a>
         </div>
         
-        <div class="usuario">
-          <a href="#"><Image src="/acceso.png" width="40" height="40"></Image></a>
+        <div class="usuario" id="usuario">
+
+          <label class="popup">
+            <input type="checkbox"></input>
+            <div class="burger" tabindex="0">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <nav class="popup-window">
+              <legend>Actions</legend>
+              <ul class="popup-list">
+                <form action="/loginRegister">
+                  <li><button><span>Iniciar Sesión</span></button></li>
+                </form>
+              </ul>
+            </nav>
+          </label>
         </div>
       </header>
 
@@ -59,4 +72,3 @@ export default function Hola() {
 
   )
 }
-

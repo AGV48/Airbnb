@@ -1,130 +1,232 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function Register() {
+    const contenedorRef = useRef(null);
+    const formularioLoginRef = useRef(null);
+    const formularioRegisterRef = useRef(null);
+    const cajaTraseraLoginRef = useRef(null);
+    const cajaTraseraRegisterRef = useRef(null);
+
     useEffect(() => {
-        // Este código solo se ejecuta en el cliente
-        document.getElementById("btn_iniciar-sesion").addEventListener("click", iniciarSesion)
-        document.getElementById("btn_registrarse").addEventListener("click", register);
+        const btnIniciarSesion = document.getElementById("btn_iniciar-sesion");
+        const btnRegistrarse = document.getElementById("btn_registrarse");
+        const formularioRegister = document.querySelector(".formulario_register");
+        const formularioLogin = document.querySelector(".formulario_login");
+
+        if (!btnIniciarSesion || !btnRegistrarse || !formularioRegister) {
+            console.error("Uno o más elementos no fueron encontrados.");
+            return;
+        }
+
+        const anchoPagina = () => {
+            if (window.innerWidth > 850) {
+                cajaTraseraLoginRef.current.style.display = "block";
+                cajaTraseraRegisterRef.current.style.display = "block";
+            } else {
+                cajaTraseraRegisterRef.current.style.display = "block";
+                cajaTraseraRegisterRef.current.style.opacity = "1";
+                cajaTraseraLoginRef.current.style.display = "none";
+                formularioLoginRef.current.style.display = "block";
+                formularioRegisterRef.current.style.display = "none";
+                contenedorRef.current.style.left = "0";
+            }
+        };
+
+        const iniciarSesion = () => {
+            if (window.innerWidth > 850) {
+                formularioRegisterRef.current.style.display = "none";
+                contenedorRef.current.style.left = "10px";
+                formularioLoginRef.current.style.display = "block";
+                cajaTraseraRegisterRef.current.style.opacity = "1";
+                cajaTraseraLoginRef.current.style.opacity = "0";
+            } else {
+                formularioRegisterRef.current.style.display = "none";
+                contenedorRef.current.style.left = "0px";
+                formularioLoginRef.current.style.display = "block";
+                cajaTraseraRegisterRef.current.style.display = "block";
+                cajaTraseraLoginRef.current.style.display = "none";
+            }
+        };
+
+        const register = () => {
+            if (window.innerWidth > 850) {
+                formularioRegisterRef.current.style.display = "block";
+                contenedorRef.current.style.left = "410px";
+                formularioLoginRef.current.style.display = "none";
+                cajaTraseraRegisterRef.current.style.opacity = "0";
+                cajaTraseraLoginRef.current.style.opacity = "1";
+            } else {
+                formularioRegisterRef.current.style.display = "block";
+                contenedorRef.current.style.left = "0px";
+                formularioLoginRef.current.style.display = "none";
+                cajaTraseraRegisterRef.current.style.display = "none";
+                cajaTraseraLoginRef.current.style.display = "block";
+                cajaTraseraLoginRef.current.style.opacity = "1";
+            }
+        };
+
+        const handleFormSubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(formularioRegisterRef.current);
+            const data = {
+                nombre_completo: formData.get("nombre_completo"),
+                contraseña: formData.get("contraseña"),
+            };
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+                if (response.ok) {
+                    alert('Usuario registrado con éxito');
+                    window.location.reload(); // Recarga la página después de registrar con éxito
+                } else {
+                    alert('Error al registrar el usuario');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al registrar el usuario');
+            }
+        };
+
+        const handleLoginSubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(formularioLoginRef.current);
+            const data = {
+                nombre_completo: formData.get("nombre_completo"),
+                contraseña: formData.get("contraseña"),
+            };
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+                if (response.ok) {
+                    const result = await response.json(); // Aquí obtienes la respuesta del backend
+                    const user = result.usuario; // Accedes al objeto usuario retornado
+                    localStorage.setItem("usuario", JSON.stringify(user)); // Guardas el usuario en localStorage
+                    alert('Inicio de sesión exitoso');
+                    location = "/"; // Recargar la página para reflejar los cambios
+                } else {
+                    alert('Error al iniciar sesión');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al iniciar sesión');
+            }
+        };
+        
+        formularioRegister.addEventListener("submit", handleFormSubmit);
+        formularioLogin.addEventListener("submit", handleLoginSubmit);
+        btnIniciarSesion.addEventListener("click", iniciarSesion);
+        btnRegistrarse.addEventListener("click", register);
         window.addEventListener("resize", anchoPagina);
 
-        //Declaración de variables
-        var contenedor_login_register = document.querySelector(".contenedor_login-register");
-        var formulario_login = document.querySelector(".formulario_login");
-        var formulario_register = document.querySelector(".formulario_register");
-        var caja_trasera_login = document.querySelector(".caja_trasera-login");
-        var caja_trasera_register = document.querySelector(".caja_trasera-register");
+        anchoPagina(); // Ejecutar la función al inicio
 
-        function anchoPagina(){
-            if(window.innerWidth > 850){
-                caja_trasera_login.style.display = "block";
-                caja_trasera_register.style.display = "block";
-            }else{
-                caja_trasera_register.style.display = "block";
-                caja_trasera_register.style.opacity = "1";
-                caja_trasera_login.style.display = "none";
-                formulario_login.style.display = "block";
-                formulario_register.style.display = "none";
-                contenedor_login_register.style.left = "0";
+        return () => {
+            formularioRegister.removeEventListener("submit", handleFormSubmit);
+            formularioLogin.removeEventListener("submit", handleLoginSubmit);
+            btnIniciarSesion.removeEventListener("click", iniciarSesion);
+            btnRegistrarse.removeEventListener("click", register);
+            window.removeEventListener("resize", anchoPagina);
+        };
+        
+    }, []);
+
+    useEffect(() => {
+        const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
+        if (usuarioGuardado) {
+            const usuarioElemento = document.getElementById("usuario");
+            if (usuarioElemento) {
+                usuarioElemento.innerHTML = `
+                    <label class="popup">
+                        <input type="checkbox" />
+                        <div class="burger" tabIndex="0">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <nav class="popup-window">
+                            <legend>Hola, ${usuarioGuardado.nombre_completo}</legend>
+                            <ul class="popup-list">
+                                <li><button id="cerrar_sesion"><span>Cerrar Sesión</span></button></li>
+                            </ul>
+                        </nav>
+                    </label>
+                `;
+    
+                // Agregar evento para cerrar sesión
+                const cerrarSesionBtn = document.getElementById("cerrar_sesion");
+                if (cerrarSesionBtn) {
+                    cerrarSesionBtn.addEventListener("click", () => {
+                        localStorage.removeItem("usuario");
+                        window.location.reload();
+                    });
+                }
             }
         }
-        anchoPagina();
-
-        function iniciarSesion(){
-            if(window.innerWidth > 850){
-                formulario_register.style.display = "none";
-                contenedor_login_register.style.left = "10px";
-                formulario_login.style.display = "block";
-                caja_trasera_register.style.opacity= "1";
-                caja_trasera_login.style.opacity = "0";
-            }else{
-                formulario_register.style.display = "none";
-                contenedor_login_register.style.left = "0px";
-                formulario_login.style.display = "block";
-                caja_trasera_register.style.display= "block";
-                caja_trasera_login.style.display = "none";
-            }
-
-        }
-
-        function register(){
-            if(window.innerWidth > 850){
-                formulario_register.style.display = "block";
-                contenedor_login_register.style.left = "410px";
-                formulario_login.style.display = "none";
-                caja_trasera_register.style.opacity= "0";
-                caja_trasera_login.style.opacity = "1";
-            }else{
-                formulario_register.style.display = "block";
-                contenedor_login_register.style.left = "0px";
-                formulario_login.style.display = "none";
-                caja_trasera_register.style.display= "none";
-                caja_trasera_login.style.display = "block";
-                caja_trasera_login.style.opacity = "1";
-            }
-        }
-      }, []);
+    }, []);
 
     return (
         <div>
             <header>
-                <div class="logo"><a href="/">Airbnb</a></div>
-
-                <div class="container">
-                <a href="/prueba">Alojamientos</a>
-                <a href="#">Experiencias</a>
+                <div className="logo"><a href="/">Airbnb</a></div>
+                <div className="container">
+                    <a href="/prueba">Alojamientos</a>
+                    <a href="#">Experiencias</a>
                 </div>
-                
-                <div class="usuario" id="usuario">
-
-                <label class="popup">
-                    <input type="checkbox"></input>
-                    <div class="burger" tabindex="0">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    </div>
-                    <nav class="popup-window">
-                    <legend>Actions</legend>
-                    <ul class="popup-list">
-                        <form action="">
-                        <li><button><span>Iniciar Sesión</span></button></li>
-                        </form>
-                    </ul>
-                    </nav>
-                </label>
+                <div className="usuario" id="usuario">
+                    <label className="popup">
+                        <input type="checkbox" />
+                        <div className="burger" tabIndex="0">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <nav className="popup-window">
+                            <legend>Actions</legend>
+                            <ul className="popup-list">
+                                <form action="">
+                                    <li><button><span>Iniciar Sesión</span></button></li>
+                                </form>
+                            </ul>
+                        </nav>
+                    </label>
                 </div>
             </header>
 
-            <div class="contenedor_todo">
-                <div class="caja_trasera">
-                    <div class="caja_trasera-login">
+            <div className="contenedor_todo">
+                <div className="caja_trasera">
+                    <div ref={cajaTraseraLoginRef} className="caja_trasera-login">
                         <h3>¿Ya tienes una cuenta?</h3>
-                        <p>Inicia sesión para entrar a la pagina</p>
+                        <p>Inicia sesión para entrar a la página</p>
                         <button id="btn_iniciar-sesion">Iniciar Sesión</button>
                     </div>
-                    <div class="caja_trasera-register">
+                    <div ref={cajaTraseraRegisterRef} className="caja_trasera-register">
                         <h3>¿Todavía no tienes una cuenta?</h3>
-                        <p>Regístrate para entrar a la pagina</p>
+                        <p>Regístrate para entrar a la página</p>
                         <button id="btn_registrarse">Registrarse</button>
-                    </div>    
+                    </div>
                 </div>
-                <div class="contenedor_login-register">
-                    <form action="" method="POST" class="formulario_login">
+                <div ref={contenedorRef} className="contenedor_login-register">
+                    <form ref={formularioLoginRef} className="formulario_login">
                         <h2>Iniciar Sesión</h2>
-                        <input type="text" placeholder="Nombre Completo" name="nombre_completo" require></input>
-                        <input type="text" placeholder="Contraseña" name="contraseña" require></input>
+                        <input type="text" placeholder="Nombre Completo" name="nombre_completo" autoComplete='off' required />
+                        <input type="password" placeholder="Contraseña" name="contraseña" required />
                         <button>Entrar</button>
                     </form>
-
-                    <form action="" method="POST" class="formulario_register">
+                    <form ref={formularioRegisterRef} className="formulario_register">
                         <h2>Registrarse</h2>
-                        <input type="text" placeholder="Nombre Completo" name="nombre_completo" require></input>
-                        <input type="text" placeholder="Contraseña" name="contraseña" require></input>
-                        <input type="text" placeholder="Confirmación Contraseña" name="confirmacion_contraseña" require></input>
+                        <input type="text" placeholder="Nombre Completo" name="nombre_completo" autoComplete='off' required />
+                        <input type="password" placeholder="Contraseña" name="contraseña" required />
+                        <input type="password" placeholder="Confirmación Contraseña" name="confirmacion_contraseña" required />
                         <button>Registrarse</button>
                     </form>
                 </div>
             </div>
         </div>
-    )
+    );
 }

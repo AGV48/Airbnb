@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import Filter from '../components/filter';
 
-export default function Home() {
-  // Efecto para manejar la lógica de inicio de sesión y cierre de sesión
+export default function Experiences() {
   useEffect(() => {
     // Verificar si hay un usuario en el localStorage
     const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
@@ -37,34 +36,31 @@ export default function Home() {
     }
   }, []);
 
-  // Estados para manejar los filtros, listados y el estado de carga
   const [filters, setFilters] = useState({});
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Efecto para la obtención de datos de alojamientos desde una API
   useEffect(() => {
+    // Simula una llamada a una API para obtener los alojamientos
     const fetchListings = async () => {
       try {
         const response = await fetch('/api/listings');
         const data = await response.json();
-        setListings(data); // Actualizar el estado con los datos obtenidos
+        setListings(data);
       } catch (error) {
         console.error('Error fetching listings:', error);
       } finally {
-        setLoading(false); // Indicar que la carga ha terminado
+        setLoading(false);
       }
     };
 
     fetchListings();
   }, []);
 
-  // Función para manejar los filtros aplicados
   const handleFilter = (filters) => {
-    setFilters(filters); // Actualizar el estado de los filtros
+    setFilters(filters);
   };
 
-  // Filtrar los listados basados en los filtros aplicados
   const filteredListings = listings.filter((listing) => {
     return (
       (!filters.location || listing.location.includes(filters.location)) &&
@@ -74,17 +70,18 @@ export default function Home() {
     );
   });
 
-  // Renderizar la interfaz de usuario
   return (
     <div>
       <header>
         <div class="logo">Airbnb</div>
+
         <div class="container">
           <a href="/">Alojamientos</a>
           <a href="/experiences">Experiencias</a>
         </div>
         
         <div class="usuario" id="usuario">
+
           <label class="popup">
             <input type="checkbox"></input>
             <div class="burger" tabindex="0">
@@ -104,25 +101,17 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Componente de filtro que permite al usuario aplicar filtros */}
       <Filter onFilter={handleFilter} />
 
-      {/* Sección que muestra los alojamientos filtrados */}
-      <section className="listings">
-        <h2>Alojamientos populares</h2>
-        <div id="listing-container" className="listing-container">
-          {filteredListings.map((listing) => (
-            <div className="listing-card" key={listing.id}>
-              <img src={listing.image} alt={listing.location} />
-              <h3>{listing.location}</h3>
-              <p>{listing.description}</p>
-              <p className="price">{listing.price}</p>
-            </div>
-          ))}
+      <section class="experiences">
+        <h2>Experiencias</h2>
+        <div class="experience-container">
+          <div class="experience-item">Experiencia 1</div>
+          <div class="experience-item">Experiencia 2</div>
+          <div class="experience-item">Experiencia 3</div>
         </div>
       </section>
 
-      {/* Pie de página */}
       <footer>
           <p>&copy; 2025. Todos los derechos reservados.</p>
       </footer>

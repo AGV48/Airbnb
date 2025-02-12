@@ -45,43 +45,15 @@ a {
 .logo:hover{
   color: lightblue;
 }
-
-/* ESTILOS INPUT BÚSQUEDA*/
-/* From Uiverse.io by OnlyCodeChannel */ 
-.searchBox {
-  display: flex;
-  max-width: 500px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  border-radius: 50px;
-  position: relative;
-  border-color: black;
-  border-style: solid;
-  border-width: 1px;
-}
-.searchButton {
+footer {
+  background-color: #333;
   color: white;
-  position: absolute;
-  right: 8px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: var(--gradient-2, linear-gradient(90deg, #f3cfcf 0%, #fd0000 100%));
-  border: 0;
-  display: inline-block;
-  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-  cursor: pointer;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
 }
-.searchInput {
-  color: black;
-  border: none;
-  background: none;
-  width: 400px;
-  outline: none;
-  font-size: 15px;
-  padding: 24px 46px 24px 26px;
-}
+
+
 .listings {
   padding: 20px;
   text-align: center;
@@ -135,26 +107,6 @@ header nav ul li a {
   color: white;
   text-decoration: none;
 }
-/*hover effect*/
-button:hover {
-  color: #fff;
-  background-color: #1A1A1A;
-  box-shadow: rgba(0, 0, 0, 0.5) 0 10px 20px;
-  transform: translateY(-3px);
-}
-/*button pressing effect*/
-button:active {
-  box-shadow: none;
-  transform: translateY(0);
-}
-footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 20px;
-}
-
 
 /* ESTILOS POPUP */
 /* From Uiverse.io by Galahhad */ 
@@ -341,14 +293,15 @@ footer {
 
 /* ESTILOS LOGIN-REGISTER */
 .contenedor_todo{
-  width: 100%;
-  max-width: 800px;
+  width: 800px;
+  height: 450px;
   margin: auto;
   position: relative;
   padding-top: 60px;
 }
 .caja_trasera{
-  width: 100%;
+  width: 800px;
+  height: 450px;
   padding: 10px 20px;
   display: flex;
   justify-content: center;
@@ -386,11 +339,11 @@ footer {
 }
 .contenedor_login-register{
   display: flex;
+  height: 350px;
   align-items: center;
-  width: 100%;
   max-width: 380px;
   position: relative;
-  top: -185px;
+  top: -400px;
   left: 10px;
 
   transition: left 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
@@ -458,3 +411,90 @@ display: block;
       position: relative;
   }
 }
+
+/* ESTILOS EXPERIENCIAS */
+.experiences, .online-experiences, .featured-destinations {
+  padding: 20px;
+  text-align: center;
+}
+.experience-container, .online-experience-container, .destination-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.experience-item, .online-experience-item, .destination-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  width: 300px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.experience-item:hover, .online-experience-item:hover, .destination-item:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.listing-container{
+  display: flex;
+  gap: 100px;
+}
+
+/* ESTILOS FILTER */
+.filter {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-top: 1px solid #ddd;
+  width: 85%;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px;
+  border-radius: 50px;
+}
+.filter-item {
+  display: flex;
+  flex-direction: column;
+}
+.filter-item label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.filter-item input {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color:#f8f8f8;
+  color:#000000
+} 
+.filter-item input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Toca invertir color para que el ícono de calendario sea negro, porque el original es blanco */
+}
+/* From Uiverse.io by OnlyCodeChannel */
+.filter button {
+  color: white;
+  right: 8px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--gradient-2, linear-gradient(90deg, #f3cfcf 0%, #fd0000 100%));
+  border: 0;
+  display: inline-block;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  cursor: pointer;
+}
+/*hover effect*/
+button:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 10px 20px;
+  transform: translateY(-3px);
+}
+/*button pressing effect*/
+button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+
+

@@ -38,7 +38,6 @@ export default function Experiences() {
 
   const [filters, setFilters] = useState({});
   const [listings, setListings] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Simula una llamada a una API para obtener los alojamientos
@@ -49,8 +48,6 @@ export default function Experiences() {
         setListings(data);
       } catch (error) {
         console.error('Error fetching listings:', error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -73,31 +70,34 @@ export default function Experiences() {
   return (
     <div>
       <header>
-        <div class="logo">Airbnb</div>
-
+        <div className="logo">
+          <a href="/">Airbnb</a>
+        </div>
         <div class="container">
           <a href="/">Alojamientos</a>
           <a href="/experiences">Experiencias</a>
         </div>
         
-        <div class="usuario" id="usuario">
-
-          <label class="popup">
-            <input type="checkbox"></input>
-            <div class="burger" tabindex="0">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <nav class="popup-window">
-              <legend>Acciones</legend>
-              <ul class="popup-list">
-                <form action="/loginRegister">
-                  <li><button><span>Iniciar Sesión</span></button></li>
-                </form>
-              </ul>
-            </nav>
-          </label>
+        <div class="containerUsuario">
+          <a href='/registerHosting' class="registerHosting">Pon tu espacio</a>
+          <div class="usuario" id="usuario">
+            <label class="popup">
+              <input type="checkbox"></input>
+              <div class="burger" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <nav class="popup-window">
+                <legend>Acciones</legend>
+                <ul class="popup-list">
+                  <form action="/loginRegister">
+                    <li><button><span>Iniciar Sesión</span></button></li>
+                  </form>
+                </ul>
+              </nav>
+            </label>
+          </div>
         </div>
       </header>
 

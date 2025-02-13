@@ -13,11 +13,6 @@ export default function Register() {
         const formularioRegister = document.querySelector(".formulario_register");
         const formularioLogin = document.querySelector(".formulario_login");
 
-        if (!btnIniciarSesion || !btnRegistrarse || !formularioRegister) {
-            console.error("Uno o más elementos no fueron encontrados.");
-            return;
-        }
-
         const anchoPagina = () => {
             if (window.innerWidth > 850) {
                 cajaTraseraLoginRef.current.style.display = "block";
@@ -172,31 +167,37 @@ export default function Register() {
 
     return (
         <div>
-            <header>
-                <div className="logo"><a href="/">Airbnb</a></div>
-                <div className="container">
-                    <a href="/prueba">Alojamientos</a>
-                    <a href="#">Experiencias</a>
-                </div>
-                <div className="usuario" id="usuario">
-                    <label className="popup">
-                        <input type="checkbox" />
-                        <div className="burger" tabIndex="0">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <nav className="popup-window">
-                            <legend>Actions</legend>
-                            <ul className="popup-list">
-                                <form action="">
-                                    <li><button><span>Iniciar Sesión</span></button></li>
-                                </form>
-                            </ul>
-                        </nav>
-                    </label>
-                </div>
-            </header>
+        <header>
+            <div className="logo">
+            <a href="/">Airbnb</a>
+            </div>
+        <div class="container">
+          <a href="/">Alojamientos</a>
+          <a href="/experiences">Experiencias</a>
+        </div>
+        
+        <div class="containerUsuario">
+          <a href='/registerHosting' class="registerHosting">Pon tu espacio</a>
+          <div class="usuario" id="usuario">
+            <label class="popup">
+              <input type="checkbox"></input>
+              <div class="burger" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <nav class="popup-window">
+                <legend>Acciones</legend>
+                <ul class="popup-list">
+                  <form action="/loginRegister">
+                    <li><button><span>Iniciar Sesión</span></button></li>
+                  </form>
+                </ul>
+              </nav>
+            </label>
+          </div>
+        </div>
+      </header>
 
             <div className="contenedor_todo">
                 <div className="caja_trasera">

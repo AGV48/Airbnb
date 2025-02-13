@@ -108,6 +108,13 @@ header nav ul li a {
   text-decoration: none;
 }
 
+.containerUsuario{
+  display: flex;
+  gap: 50px;
+}
+.registerHosting{
+  margin-top: 7px;
+}
 /* ESTILOS POPUP */
 /* From Uiverse.io by Galahhad */ 
 /* The design is inspired from the mockapi.io */
@@ -448,7 +455,7 @@ display: block;
   padding: 20px;
   background-color: #f8f8f8;
   border-top: 1px solid #ddd;
-  width: 85%;
+  width: 70%;
   box-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px;
   border-radius: 50px;
 }
@@ -497,4 +504,257 @@ button:active {
 }
 
 
+/* ESTILOS RESGISTER_HOSTING */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 600px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 2px;
+  position: relative;
+  left: 100px;
+}
+.title {
+  font-size: 28px;
+  color: #ff585e;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+}
+.title::before,.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: #ff585e;
+}
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: #ff585e;
+}
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+.message, .signin {
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
+}
+.signin {
+  text-align: center;
+}
+.signin a {
+  color: #ff585e;
+}
+.signin a:hover {
+  text-decoration: underline #ff585e;
+}
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+.form label {
+  position: relative;
+}
+.form label .input {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  background: #f2f2f2;
+  color: black;
+}
+.form label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: rgb(0, 0, 0);
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+.form label .input:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
+}
+.form label .input:focus + span,.form label .input:valid + span {
+  top: 30px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+.form label .input:valid + span {
+  color: rgb(0, 0, 0);
+}
+.submit {
+  border: none;
+  outline: none;
+  background-color: #ff585e;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transform: .3s ease;
+}
+.submit:hover {
+  background-color: #ff585e(56, 90, 194);
+}
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
 
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+
+/* Body reserva */
+.container2 {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 1px;
+  margin-left: 300px;
+}
+hr {
+  height: 1px;
+  background-color: #E5C7C5;
+  border: none;
+}
+.card {
+  width: 800px;
+  background: #F4E2DE;
+  box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+}
+.title2 {
+  font-size: 28px;
+  color: #ff585e;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+}
+.title2::before,.title2::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 20px;
+  background-color: #ff585e;
+}
+.title2::before {
+  width: 18px;
+  height: 18px;
+  background-color: #ff585e;
+}
+.title2::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+/* Cart */
+.cart {
+  border-radius: 19px 19px 0px 0px;
+}
+.cart .steps {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.cart .steps .step {
+  display: grid;
+  gap: 10px;
+}
+.cart .steps .step span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 8px;
+  display: block;
+}
+.cart .steps .step p {
+  font-size: 11px;
+  font-weight: 600;
+  color: #000000;
+}
+.input_field {
+  width: auto;
+  height: 36px;
+  padding: 0 0 0 12px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #E5C7C5;
+  background-color: #F4E2DE;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+.input_field:focus {
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 0px 2px #F3D2C9;
+  background-color: #F4E2DE;
+}
+/* Checkout */
+.payments .details {
+  display: grid;
+  grid-template-columns: 10fr 1fr;
+  padding: 0px;
+  gap: 5px;
+}
+.payments .details span:nth-child(odd) {
+  font-size: 12px;
+  font-weight: 600;
+  color: #000000;
+  margin: auto auto auto 0;
+}
+.payments .details span:nth-child(even) {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000000;
+  margin: auto 0 auto auto;
+}
+.checkout .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 10px 20px;
+  background-color: #ECC2C0;
+}
+.price {
+  position: relative;
+  font-size: 22px;
+  color: #2B2B2F;
+  font-weight: 900;
+}
+.checkout .checkout-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 36px;
+  background: #F3D2C9;
+  box-shadow: 0px 0.5px 0.5px #E5C7C5, 0px 1px 0.5px rgba(239, 239, 239, 0.5);
+  border-radius: 7px;
+  border: 1px solid #ECC2C0;
+  color: #000000;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}

@@ -5,12 +5,10 @@ import Link from 'next/link';
 export default function Home() {
   // Efecto para manejar la lógica de inicio de sesión y cierre de sesión
   useEffect(() => {
-    // Verificar si hay un usuario en el localStorage
     const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
     const usuarioElemento = document.getElementById("usuario");
 
     if (usuarioGuardado && usuarioElemento) {
-      // Actualizar el contenido del popup con el nombre del usuario
       usuarioElemento.innerHTML = `
         <label class="popup">
           <input type="checkbox"></input>
@@ -27,29 +25,26 @@ export default function Home() {
           </nav>
         </label>
       `;
-      // Agregar evento para cerrar sesión
       const cerrarSesionBtn = document.getElementById("cerrar_sesion");
       if (cerrarSesionBtn) {
         cerrarSesionBtn.addEventListener("click", () => {
           localStorage.removeItem("usuario");
-          window.location.reload(); // Recargar la página para reflejar el cierre de sesión
+          window.location.reload();
         });
       }
     }
   }, []);
 
-  // Estados para manejar los filtros, listados y el estado de carga
   const [filters, setFilters] = useState({});
   const [listings, setListings] = useState([]);
 
-  // Efecto para la obtención de datos de alojamientos desde una API
   useEffect(() => {
     const fetchListings = async () => {
       try {
         const response = await fetch('/api/listings');
         const data = await response.json();
         console.log('casas:', data);
-        setListings(data); // Actualizar el estado con los datos obtenidos
+        setListings(data);
       } catch (error) {
         console.error('Error fetching listings:', error);
       }
@@ -58,21 +53,18 @@ export default function Home() {
     fetchListings();
   }, []);
 
-  // Función para manejar los filtros aplicados
   const handleFilter = (filters) => {
-    setFilters(filters); // Actualizar el estado de los filtros
+    setFilters(filters);
   };
 
-  // Filtrar los listados basados en los filtros aplicados
   const filteredListings = listings.filter((listing) => {
     return (
-      (!filters.pais || listing.pais.includes(filters.pais)) &&
-      (!filters.ciudad || listing.ciudad.includes(filters.ciudad)) &&
+      (!filters.pais || listing.pais.toLowerCase().includes(filters.pais.toLowerCase())) &&
+      (!filters.ciudad || listing.ciudad.toLowerCase().includes(filters.ciudad.toLowerCase())) &&
       (!filters.guests || listing.guests >= filters.guests)
     );
   });
 
-  // Renderizar la interfaz de usuario
   return (
     <div>
       <header>
@@ -105,10 +97,8 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Componente de filtro que permite al usuario aplicar filtros */}
       <Filter onFilter={handleFilter} />
 
-      {/* Sección que muestra los alojamientos filtrados */}
       <section className="listings">
         <h2>Alojamientos populares</h2>
         <div id="listing-container" className="listing-container">
@@ -124,7 +114,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pie de página */}
       <footer>
           <p>&copy; 2025. Todos los derechos reservados.</p>
       </footer>

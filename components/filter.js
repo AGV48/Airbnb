@@ -1,66 +1,61 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const Filter = ({ onFilter }) => {
-  const [location, setLocation] = useState('');
-  const [checkin, setCheckin] = useState('');
-  const [checkout, setCheckout] = useState('');
-  const [guests, setGuests] = useState('');
+  const [filters, setFilters] = useState({
+    pais: '',
+    ciudad: '',
+    guests: ''
+  });
 
-  const handleFilter = () => {
-    const filters = {
-      location,
-      checkin,
-      checkout,
-      guests,
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFilters({
+      ...filters,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onFilter(filters);
   };
 
   return (
-    <div>
-      <center>
-        <section className="filter">
-          <div className="filter-item">
-            <label htmlFor="location">Dónde</label>
-            <input
-              type="text"
-              id="location"
-              placeholder="Explora destinos"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            />
-          </div>
-          <div className="filter-item">
-            <label htmlFor="checkin">Llegada</label>
-            <input
-              type="date"
-              id="checkin"
-              placeholder="Agregar fecha"
-              value={checkin}
-              onChange={(e) => setCheckin(e.target.value)}
-            />
-          </div>
-          <div className="filter-item">
-            <label htmlFor="checkout">Salida</label>
-            <input
-              type="date"
-              id="checkout"
-              placeholder="Agregar fecha"
-              value={checkout}
-              onChange={(e) => setCheckout(e.target.value)}
-            />
-          </div>
-          <div className="filter-item">
-            <label htmlFor="guests">Quién</label>
-            <input
-              type="number"
-              id="guests"
-              placeholder="Cuántos"
-              value={guests}
-              onChange={(e) => setGuests(e.target.value)}
-            />
-          </div>
-          <button onClick={handleFilter}>
+    <center>
+
+      <form onSubmit={handleSubmit} className="filter-form">
+        <div class="filter-item">
+          <input
+            type="text"
+            name="pais"
+            placeholder="País"
+            value={filters.pais}
+            onChange={handleChange}
+            className="filter-input"
+          />
+        </div>
+        <div class="filter-item">
+          <input
+            type="text"
+            name="ciudad"
+            placeholder="Ciudad"
+            value={filters.ciudad}
+            onChange={handleChange}
+            className="filter-input"
+          />
+        </div>
+        <div class="filter-item">
+
+          <input
+            type="number"
+            name="guests"
+            placeholder="Huéspedes"
+            value={filters.guests}
+            onChange={handleChange}
+            className="filter-input"
+          />
+        </div>
+        <button type="submit" className="filter-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
               <g clip-path="url(#clip0_2_17)">
               <g filter="url(#filter0_d_2_17)">
@@ -84,9 +79,8 @@ const Filter = ({ onFilter }) => {
               </defs>
             </svg>
           </button>
-        </section>
-      </center>
-    </div>
+      </form>
+    </center>
   );
 };
 

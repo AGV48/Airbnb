@@ -448,7 +448,7 @@ display: block;
 }
 
 /* ESTILOS FILTER */
-.filter {
+.filter-form {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -459,26 +459,15 @@ display: block;
   box-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px;
   border-radius: 50px;
 }
-.filter-item {
-  display: flex;
-  flex-direction: column;
-}
-.filter-item label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-.filter-item input {
+.filter-input {
   padding: 10px;
   border: 1px solid black;
   border-radius: 5px;
   background-color:#f8f8f8;
   color:#000000
-} 
-.filter-item input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* Toca invertir color para que el ícono de calendario sea negro, porque el original es blanco */
 }
 /* From Uiverse.io by OnlyCodeChannel */
-.filter button {
+.filter-button {
   color: white;
   right: 8px;
   width: 50px;

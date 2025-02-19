@@ -76,8 +76,6 @@ export default function Register() {
                 if (response.ok) {
                     alert('Usuario registrado con éxito');
                     window.location.reload(); // Recarga la página después de registrar con éxito
-                } else {
-                    alert('Error al registrar el usuario');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -104,8 +102,6 @@ export default function Register() {
                     localStorage.setItem("usuario", JSON.stringify(user)); // Guardas el usuario en localStorage
                     alert('Inicio de sesión exitoso');
                     location = "/"; // Recargar la página para reflejar los cambios
-                } else {
-                    alert('Error al iniciar sesión');
                 }
             } catch (error) {
                 console.error('Error:', error);

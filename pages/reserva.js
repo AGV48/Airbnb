@@ -69,7 +69,8 @@ export default function Reserva() {
 
     const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
     if (!usuarioGuardado) {
-      setError('Debes iniciar sesión para realizar una reserva');
+      alert('Debes iniciar sesión para realizar una reserva');
+      location = "/loginRegister";
       return;
     }
 

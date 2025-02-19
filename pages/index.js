@@ -61,7 +61,7 @@ export default function Home() {
     return (
       (!filters.pais || listing.pais.toLowerCase().includes(filters.pais.toLowerCase())) &&
       (!filters.ciudad || listing.ciudad.toLowerCase().includes(filters.ciudad.toLowerCase())) &&
-      (!filters.guests || listing.guests >= filters.guests)
+      (!filters.precio || listing.precio <= filters.precio)
     );
   });
 

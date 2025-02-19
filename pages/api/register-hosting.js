@@ -47,7 +47,7 @@ export default async function handler(req, res) {
       res.status(200).json({ message: 'Alojamiento registrado con éxito', id_alojamiento: result.rows[0].id_alojamiento });
     } catch (error) {
       console.error('Error al registrar el alojamiento:', error);
-      res.status(500).json({ message: 'Error al registrar el alojamiento' });
+      res.status(500).json({ message: 'Error al registrar el alojamiento, inténtalo de nuevo' });
     }
   } else {
     res.status(405).json({ message: 'Método no permitido' });

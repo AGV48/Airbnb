@@ -4,7 +4,7 @@ const Filter = ({ onFilter }) => {
   const [filters, setFilters] = useState({
     pais: '',
     ciudad: '',
-    guests: ''
+    precio: ''
   });
 
   const handleChange = (e) => {
@@ -45,12 +45,11 @@ const Filter = ({ onFilter }) => {
           />
         </div>
         <div class="filter-item">
-
           <input
-            type="number"
-            name="guests"
-            placeholder="Huéspedes"
-            value={filters.guests}
+            type="text"
+            name="precio"
+            placeholder="Precio Máximo"
+            value={filters.precio}
             onChange={handleChange}
             className="filter-input"
           />
